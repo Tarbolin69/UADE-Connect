@@ -38,7 +38,7 @@ public class Main {
                 .fecha_publicacion()
                 .reacciones()
                 .num_comentarios()
-                .contenido("Me gusta estudiar")
+                .contenido("Me gusta estudiar.")
                 .build();
         publicaciones.add(publicacion01);
         Publicacion publicacion02 = new Publicacion.Builder()
@@ -46,7 +46,7 @@ public class Main {
                 .fecha_publicacion()
                 .reacciones()
                 .num_comentarios()
-                .contenido("Me gusta estudiar")
+                .contenido("Estaria bueno si el receso durara 40 minutos.")
                 .build();
         publicaciones.add(publicacion02);
         Publicacion publicacion03 = new Publicacion.Builder()
@@ -54,7 +54,7 @@ public class Main {
                 .fecha_publicacion()
                 .reacciones()
                 .num_comentarios()
-                .contenido("Me gusta estudiar")
+                .contenido("No me gusta estudiar")
                 .build();
         publicaciones.add(publicacion03);
         Publicacion publicacion04 = new Publicacion.Builder()
@@ -62,7 +62,7 @@ public class Main {
                 .fecha_publicacion()
                 .reacciones()
                 .num_comentarios()
-                .contenido("Me gusta estudiar")
+                .contenido("Tengo cinco parciales el mismo dia ;(")
                 .build();
         publicaciones.add(publicacion04);
 
