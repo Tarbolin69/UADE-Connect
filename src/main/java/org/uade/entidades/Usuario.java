@@ -1,27 +1,21 @@
 package org.uade.entidades;
 
+import java.util.UUID;
+
 public class Usuario {
     private String nombre;
-    private int id;
+    private String id;
 
-    public Usuario(String nombre, int id) {
+    public Usuario(String nombre) {
+        this.id = UUID.randomUUID().toString();
         this.nombre = nombre;
-        this.id = id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
