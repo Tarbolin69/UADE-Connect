@@ -8,12 +8,15 @@ public class Publicacion {
     private Date fecha_publicacion;
     private int reacciones;
     private int num_comentarios;
+    private String contenido;
 
-    public Publicacion(Usuario autor, Date fecha_publicacion, int reacciones, int num_comentarios) {
+    public Publicacion(int id, Usuario autor, Date fecha_publicacion, int reacciones, int num_comentarios, String contenido) {
+        this.id = id;
         this.autor = autor;
         this.fecha_publicacion = fecha_publicacion;
         this.reacciones = reacciones;
         this.num_comentarios = num_comentarios;
+        this.contenido = contenido;
     }
 
     public int getId() {
@@ -36,6 +39,10 @@ public class Publicacion {
         return num_comentarios;
     }
 
+    public String getContenido() {
+        return contenido;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -54,5 +61,9 @@ public class Publicacion {
 
     public void setNum_comentarios(int num_comentarios) {
         this.num_comentarios = num_comentarios;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 }
