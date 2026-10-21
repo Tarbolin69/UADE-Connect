@@ -2,7 +2,6 @@ package org.uade.entidades;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -58,11 +57,10 @@ public class Publicacion {
             return this;
         }
         public Builder fecha_publicacion() {
-            LocalDateTime ahora = LocalDateTime.now();
+            LocalDateTime ahora = LocalDateTime.now().withNano(0);
             LocalDateTime limite = ahora.minusWeeks(1);
             long segunos = Duration.between(limite, ahora).getSeconds();
-            LocalDateTime fecha_rand = limite.plusSeconds(ThreadLocalRandom.current().nextLong(segunos + 1));
-            this.fecha_publicacion = fecha_rand;
+            this.fecha_publicacion = limite.plusSeconds(ThreadLocalRandom.current().nextLong(segunos + 1));
             return this;
         }
         public Builder reacciones() {
@@ -77,5 +75,19 @@ public class Publicacion {
             this.contenido = contenido;
             return this;
         }
+        public Publicacion build() {
+            return new Publicacion(this);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return """
+            Autor: %s
+            Fecha de publicacion: %s
+            Reacciones: %d
+            Comentarios: %d
+            -----------------
+            %s""".formatted(autor, fecha_publicacion, reacciones, num_comentarios, contenido);
     }
 }
