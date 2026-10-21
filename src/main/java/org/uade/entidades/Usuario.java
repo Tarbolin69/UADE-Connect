@@ -1,4 +1,4 @@
-package org.uade.data;
+package org.uade.entidades;
 
 public class Usuario {
     private String nombre;

@@ -1,25 +1,28 @@
-package org.uade.data;
+package org.uade.entidades;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Publicacion {
-    private int id;
+    private String id; ;
     private Usuario autor;
-    private Date fecha_publicacion;
+    private LocalDateTime fecha_publicacion;
     private int reacciones;
     private int num_comentarios;
     private String contenido;
 
-    public Publicacion(int id, Usuario autor, Date fecha_publicacion, int reacciones, int num_comentarios, String contenido) {
-        this.id = id;
+    public Publicacion(Usuario autor, LocalDateTime fecha_publicacion, int reacciones, int num_comentarios, String contenido) {
+        this.id = UUID.randomUUID().toString(); // IDs unicas
         this.autor = autor;
-        this.fecha_publicacion = fecha_publicacion;
+        // Si fuera una app con DB y persistencia
+        // this.fecha_publicacion = LocalDateTime.now();
+        this.fecha_publicacion = fecha_publicacion; // Para testear usamos fechas "falsas"
         this.reacciones = reacciones;
         this.num_comentarios = num_comentarios;
         this.contenido = contenido;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -27,7 +30,7 @@ public class Publicacion {
         return autor;
     }
 
-    public Date getFecha_publicacion() {
+    public LocalDateTime getFecha_publicacion() {
         return fecha_publicacion;
     }
 
@@ -43,7 +46,7 @@ public class Publicacion {
         return contenido;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,7 +54,7 @@ public class Publicacion {
         this.autor = autor;
     }
 
-    public void setFecha_publicacion(Date fecha_publicacion) {
+    public void setFecha_publicacion(LocalDateTime fecha_publicacion) {
         this.fecha_publicacion = fecha_publicacion;
     }
 
