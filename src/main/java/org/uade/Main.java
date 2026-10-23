@@ -13,6 +13,7 @@ public class Main {
     ArrayList<Publicacion> publicaciones = crearPublicaciones(usuarios.get(0), usuarios.get(1), usuarios.get(2),
         usuarios.get(3));
     QuickSort.quicksort(publicaciones, CriterioOrden.REACCIONES);
+    QuickSort.quicksort(publicaciones, CriterioOrden.FECHA_PUBLICACION);
 
     for (Publicacion publicacion : publicaciones) {
       System.out.println(publicacion);
