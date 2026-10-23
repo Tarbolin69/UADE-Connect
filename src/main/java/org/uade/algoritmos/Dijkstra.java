@@ -11,7 +11,12 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
+    // El código aca fue sacado de un proyecto anterior mio
+    // que consistía en encontrar la ruta más rápida entre
+    // diferentes aeropuertos de Argentina, que también
+    // tenía peso basado en tiempo.
 
+    // O((V + E)) log V)
     public record Resultado(Map<Usuario, Integer> distancias, Map<Usuario, Usuario> predecesores, List<String> pasos) {
     }
 

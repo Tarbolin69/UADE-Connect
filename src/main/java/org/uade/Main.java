@@ -1,7 +1,9 @@
 package org.uade;
 
 import org.uade.algoritmos.Dijkstra;
+import org.uade.algoritmos.Mochila;
 import org.uade.entidades.CriterioOrden;
+import org.uade.entidades.Iniciativa;
 import org.uade.entidades.Publicacion;
 import org.uade.entidades.Usuario;
 import org.uade.algoritmos.QuickSort;
@@ -21,6 +23,8 @@ public class Main {
       System.out.println(publicacion);
       System.out.println();
     }
+    System.out.println("---------------");
+    testearIniciativas();
   }
 
   private static ArrayList<Usuario> crearUsuarios() {
@@ -130,5 +134,38 @@ public class Main {
 
     System.out.println("Cadena " + origen.getNombre() + " -> " + destino.getNombre() + ": "
             + cadena.stream().map(Usuario::getNombre).toList() + " en " + distancia + " min");
+  }
+
+  private static void testearIniciativas() {
+    int presupuesto = 10;
+
+    List<Iniciativa> iniciativas = List.of(
+        new Iniciativa.Builder()
+                .descripcion("Introducir un menu vegano en la cocina.")
+                .costo(6)
+                .impacto(10)
+                .build(),
+        new Iniciativa.Builder()
+                .descripcion("Promocionar a Pantera a Director de Sede Costa.")
+                .costo(5)
+                .impacto(6)
+                .build(),
+        new Iniciativa.Builder()
+                .descripcion("Crear una app propia para clases virtuales.")
+                .costo(5)
+                .impacto(6)
+                .build()
+    );
+
+    Mochila.Resultado resultado = Mochila.seleccionar(iniciativas, presupuesto);
+
+    System.out.println("Presupuesto: " + presupuesto);
+    System.out.println("Iniciativas seleccionadas:");
+    for (Iniciativa iniciativa : resultado.seleccionadas()) {
+      System.out.println("  " + iniciativa);
+    }
+    System.out.println("Costo total: " + resultado.costoTotal());
+    System.out.println("Impacto total: " + resultado.impactoTotal());
+    System.out.println("Presupuesto restante: " + resultado.presupuestoRestante());
   }
 }

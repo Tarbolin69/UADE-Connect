@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mochila {
+    // La verdad esta fue la más simple a elejir, ya que es
+    // poco más que una variación del problema de la mochila
+    // solo que con nombres diferentes.
 
+    // O(n * P)
     public record Resultado(List<Iniciativa> seleccionadas, int costoTotal, int impactoTotal, int presupuestoRestante) {
     }
 

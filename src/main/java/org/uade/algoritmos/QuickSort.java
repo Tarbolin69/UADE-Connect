@@ -6,6 +6,8 @@ import org.uade.entidades.Publicacion;
 import java.util.ArrayList;
 
 public class QuickSort {
+  // La opción más simple para ordenar una lista
+  // y que use DyC
 
   // O(n^2)
   public static void Quicksort(ArrayList<Publicacion> publicaciones, CriterioOrden criterio) {
