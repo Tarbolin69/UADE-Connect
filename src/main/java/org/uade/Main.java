@@ -1,20 +1,22 @@
 package org.uade;
 
+import org.uade.algoritmos.Dijkstra;
 import org.uade.entidades.CriterioOrden;
 import org.uade.entidades.Publicacion;
 import org.uade.entidades.Usuario;
 import org.uade.algoritmos.QuickSort;
-
+import org.uade.entidades.Vinculo;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
   static void main() {
     ArrayList<Usuario> usuarios = crearUsuarios();
-    ArrayList<Publicacion> publicaciones = crearPublicaciones(usuarios.get(0), usuarios.get(1), usuarios.get(2),
-        usuarios.get(3));
-    QuickSort.quicksort(publicaciones, CriterioOrden.REACCIONES);
-    QuickSort.quicksort(publicaciones, CriterioOrden.FECHA_PUBLICACION);
+    testearDijkstra(usuarios);
+    System.out.println("---------------");
 
+    ArrayList<Publicacion> publicaciones = crearPublicaciones(usuarios.get(0), usuarios.get(1), usuarios.get(2), usuarios.get(3));
+    QuickSort.quicksort(publicaciones, CriterioOrden.REACCIONES);
     for (Publicacion publicacion : publicaciones) {
       System.out.println(publicacion);
       System.out.println();
@@ -32,6 +34,14 @@ public class Main {
     usuarios.add(usuario03);
     Usuario usuario04 = new Usuario("MarcosMMacri");
     usuarios.add(usuario04);
+    Usuario usuario05 = new Usuario("Pedrito1998");
+    usuarios.add(usuario05);
+    Usuario usuario06 = new Usuario("Xxx_JoseManos_xxX");
+    usuarios.add(usuario06);
+    Usuario usuario07 = new Usuario("Juan Perez de Jesus");
+    usuarios.add(usuario07);
+    Usuario usuario08 = new Usuario("MMM011");
+    usuarios.add(usuario08);
 
     return usuarios;
   }
@@ -74,5 +84,51 @@ public class Main {
     publicaciones.add(publicacion04);
 
     return publicaciones;
+  }
+
+  private static void testearDijkstra(List<Usuario> usuarios) {
+    usuarios.get(0).conectar(usuarios.get(1), 5);
+    usuarios.get(1).conectar(usuarios.get(2), 4);
+    usuarios.get(0).conectar(usuarios.get(3), 10);
+    usuarios.get(2).conectar(usuarios.get(3), 3);
+
+    Usuario origen = usuarios.get(0);
+    Usuario destino = usuarios.get(3);
+    Usuario inalcanzable = usuarios.get(7);
+
+    Dijkstra.Resultado resultado = Dijkstra.dijkstra(usuarios, origen);
+
+    System.out.println("Tiempo tomado desde " + origen.getNombre() + ":");
+    for (Usuario nodo : usuarios) {
+      int distancia = resultado.getDistancias().get(nodo);
+      System.out.println("  " + nodo.getNombre() + " -> "
+              + (distancia == Integer.MAX_VALUE ? "inalcanzable" : distancia + " min"));
+    }
+
+    mostrarCadena(resultado, origen, destino);
+    mostrarCadena(resultado, origen, inalcanzable);
+
+    System.out.println("Decisiones tomadas:");
+    for (String paso : resultado.getPasos()) {
+      System.out.println("  " + paso);
+    }
+  }
+
+  private static void mostrarCadena(Dijkstra.Resultado resultado, Usuario origen, Usuario destino) {
+    int distancia = resultado.getDistancias().get(destino);
+    if (distancia == Integer.MAX_VALUE) {
+      System.out.println("El destino " + destino.getNombre() + " es inalcanzable desde " + origen.getNombre() + ".");
+      return;
+    }
+
+    List<Usuario> cadena = new ArrayList<>();
+    Usuario cursor = destino;
+    while (cursor != null) {
+      cadena.add(0, cursor);
+      cursor = resultado.getPredecesores().get(cursor);
+    }
+
+    System.out.println("Cadena " + origen.getNombre() + " -> " + destino.getNombre() + ": "
+            + cadena.stream().map(Usuario::getNombre).toList() + " en " + distancia + " min");
   }
 }

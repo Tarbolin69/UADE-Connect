@@ -1,18 +1,12 @@
 package org.uade.entidades;
 
 public class Vinculo {
-    private Usuario origen;
     private Usuario destino;
     private int minutos;
 
-    public Vinculo(Usuario origen, Usuario destino, int minutos) {
-        this.origen = origen;
+    public Vinculo(Usuario destino, int minutos) {
         this.destino = destino;
         this.minutos = minutos;
-    }
-
-    public Usuario getOrigen() {
-        return origen;
     }
 
     public Usuario getDestino() {
