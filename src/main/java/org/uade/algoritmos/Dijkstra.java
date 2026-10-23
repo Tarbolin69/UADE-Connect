@@ -15,7 +15,7 @@ public class Dijkstra {
     public record Resultado(Map<Usuario, Integer> distancias, Map<Usuario, Usuario> predecesores, List<String> pasos) {
     }
 
-    public static Resultado dijkstra(List<Usuario> nodos, Usuario raiz) {
+    public static Resultado Dijkstra(List<Usuario> nodos, Usuario raiz) {
         Map<Usuario, Integer> distancias = new HashMap<>();
         Map<Usuario, Usuario> predecesores = new HashMap<>();
         List<String> pasos = new ArrayList<>();

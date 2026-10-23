@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class QuickSort {
 
   // O(n^2)
-  public static void quicksort(ArrayList<Publicacion> publicaciones, CriterioOrden criterio) {
-    quicksort(publicaciones, 0, publicaciones.size() - 1, criterio);
+  public static void Quicksort(ArrayList<Publicacion> publicaciones, CriterioOrden criterio) {
+    Quicksort(publicaciones, 0, publicaciones.size() - 1, criterio);
   }
 
-  private static void quicksort(ArrayList<Publicacion> publicaciones, int inicio, int fin, CriterioOrden criterio) {
+  private static void Quicksort(ArrayList<Publicacion> publicaciones, int inicio, int fin, CriterioOrden criterio) {
     // Finaliza el metodo cuando queda un solo elemento
     if (inicio >= fin) {
       return;
@@ -20,9 +20,9 @@ public class QuickSort {
     // Crea pivote y el "atras" y "adelante" de la lista
     int indicePivote = particionar(publicaciones, inicio, fin, criterio);
     // QuickSort en la particion izquierda
-    quicksort(publicaciones, inicio, indicePivote - 1, criterio);
+    Quicksort(publicaciones, inicio, indicePivote - 1, criterio);
     // QuickSort en la particion derecha
-    quicksort(publicaciones, indicePivote + 1, fin, criterio);
+    Quicksort(publicaciones, indicePivote + 1, fin, criterio);
   }
 
   private static void crearPivote(ArrayList<Publicacion> publicaciones, int inicio, int fin, CriterioOrden criterio) {

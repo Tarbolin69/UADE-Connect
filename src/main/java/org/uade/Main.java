@@ -16,7 +16,7 @@ public class Main {
     System.out.println("---------------");
 
     ArrayList<Publicacion> publicaciones = crearPublicaciones(usuarios.get(0), usuarios.get(1), usuarios.get(2), usuarios.get(3));
-    QuickSort.quicksort(publicaciones, CriterioOrden.REACCIONES);
+    QuickSort.Quicksort(publicaciones, CriterioOrden.REACCIONES);
     for (Publicacion publicacion : publicaciones) {
       System.out.println(publicacion);
       System.out.println();
@@ -96,7 +96,7 @@ public class Main {
     Usuario destino = usuarios.get(3);
     Usuario inalcanzable = usuarios.get(7);
 
-    Dijkstra.Resultado resultado = Dijkstra.dijkstra(usuarios, origen);
+    Dijkstra.Resultado resultado = Dijkstra.Dijkstra(usuarios, origen);
 
     System.out.println("Tiempo tomado desde " + origen.getNombre() + ":");
     for (Usuario nodo : usuarios) {
