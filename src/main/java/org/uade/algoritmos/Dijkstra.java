@@ -12,28 +12,7 @@ import java.util.PriorityQueue;
 
 public class Dijkstra {
 
-    public static class Resultado {
-        private final Map<Usuario, Integer> distancias;
-        private final Map<Usuario, Usuario> predecesores;
-        private final List<String> pasos;
-
-        public Resultado(Map<Usuario, Integer> distancias, Map<Usuario, Usuario> predecesores, List<String> pasos) {
-            this.distancias = distancias;
-            this.predecesores = predecesores;
-            this.pasos = pasos;
-        }
-
-        public Map<Usuario, Integer> getDistancias() {
-            return distancias;
-        }
-
-        public Map<Usuario, Usuario> getPredecesores() {
-            return predecesores;
-        }
-
-        public List<String> getPasos() {
-            return pasos;
-        }
+    public record Resultado(Map<Usuario, Integer> distancias, Map<Usuario, Usuario> predecesores, List<String> pasos) {
     }
 
     public static Resultado dijkstra(List<Usuario> nodos, Usuario raiz) {

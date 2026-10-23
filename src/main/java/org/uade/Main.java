@@ -5,7 +5,7 @@ import org.uade.entidades.CriterioOrden;
 import org.uade.entidades.Publicacion;
 import org.uade.entidades.Usuario;
 import org.uade.algoritmos.QuickSort;
-import org.uade.entidades.Vinculo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +100,7 @@ public class Main {
 
     System.out.println("Tiempo tomado desde " + origen.getNombre() + ":");
     for (Usuario nodo : usuarios) {
-      int distancia = resultado.getDistancias().get(nodo);
+      int distancia = resultado.distancias().get(nodo);
       System.out.println("  " + nodo.getNombre() + " -> "
               + (distancia == Integer.MAX_VALUE ? "inalcanzable" : distancia + " min"));
     }
@@ -109,13 +109,13 @@ public class Main {
     mostrarCadena(resultado, origen, inalcanzable);
 
     System.out.println("Decisiones tomadas:");
-    for (String paso : resultado.getPasos()) {
+    for (String paso : resultado.pasos()) {
       System.out.println("  " + paso);
     }
   }
 
   private static void mostrarCadena(Dijkstra.Resultado resultado, Usuario origen, Usuario destino) {
-    int distancia = resultado.getDistancias().get(destino);
+    int distancia = resultado.distancias().get(destino);
     if (distancia == Integer.MAX_VALUE) {
       System.out.println("El destino " + destino.getNombre() + " es inalcanzable desde " + origen.getNombre() + ".");
       return;
@@ -125,7 +125,7 @@ public class Main {
     Usuario cursor = destino;
     while (cursor != null) {
       cadena.add(0, cursor);
-      cursor = resultado.getPredecesores().get(cursor);
+      cursor = resultado.predecesores().get(cursor);
     }
 
     System.out.println("Cadena " + origen.getNombre() + " -> " + destino.getNombre() + ": "
